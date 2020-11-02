@@ -32,6 +32,7 @@ public class Movie {
 	public String toString() {
 		//return values of the different methods separated by a tab
 		//not sure of what he is asking to do here??
+		return "";
 	}
 	
 	/*You may also add additional methods, including public ones, to this class if you think they would 
