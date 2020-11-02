@@ -30,14 +30,7 @@ public class Movie {
 	}
 	
 	public String toString() {
-		//return values of the different methods separated by a tab
-		//not sure of what he is asking to do here??
-		return "";
+		return (this.name + "\t" + this.releaseYear + "\t" + this.runtime + "\t" + this.source);
 	}
 	
-	/*You may also add additional methods, including public ones, to this class if you think they would 
-	 *help with your other tasks. In this case, you should use your best judgement as to whether this 
-	 * is following good coding practice. You may of course ask your teacher for guidance here if you’re 
-	 * unsure!
-	 */
 }
