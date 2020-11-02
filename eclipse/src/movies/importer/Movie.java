@@ -30,7 +30,7 @@ public class Movie {
 	}
 	
 	public String toString() {
-		return (this.name + '	' + this.releaseYear + '	' + this.runtime + '	' + this.source);
+		return (this.name + "\t" + this.releaseYear + "\t" + this.runtime + "\t" + this.source);
 	}
 	
 }
