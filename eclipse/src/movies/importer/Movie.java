@@ -30,7 +30,12 @@ public class Movie {
 	}
 	
 	public String toString() {
-		return (this.name + "\t" + this.releaseYear + "\t" + this.runtime + "\t" + this.source);
+		StringBuilder s = new StringBuilder();
+		s.append("Movie name: "+this.name);
+		s.append("\nRelease year: "+this.releaseYear);
+		s.append("\nRuntime: "+this.runtime);
+		s.append("\nSource: "+this.source);
+		return s.toString();
 	}
 	
 }
