@@ -7,6 +7,9 @@ public class Movie {
 	private String source;
 	
 	public Movie(String releaseYear, String name, String runtime, String source) {
+		if (releaseYear == null || name == null || runtime == null || source == null ) {
+			throw new IllegalArgumentException("INSERTED NULL VALUE IN CONSTRUCTOR.");
+		}
 		this.releaseYear = releaseYear;
 		this.name = name;
 		this.runtime = runtime;
@@ -55,20 +58,13 @@ public class Movie {
 	/**
 	 * @author Nael Louis
 	 * @author Juan-Carlos Sreng-Flores 
-	 * This method overrides toString() method from Object class
-	 * It uses a StringBuilder in order to create a string concatenation
-	 * StringBuilder is used in case there a many calls of toString method.
+	 * This method overrides toString() method from Object class.
 	 * 
 	 * @return the String version of the Movie Object.
 	 * */
 	@Override
 	public String toString() {
-		StringBuilder s = new StringBuilder();
-		s.append("Movie name: "+this.name);
-		s.append("\nRelease year: "+this.releaseYear);
-		s.append("\nRuntime: "+this.runtime);
-		s.append("\nSource: "+this.source);
-		return s.toString();
+		return this.releaseYear+"\t"+this.name+"\t"+this.runtime+"\t"+this.source;
 	}
 	
 }
