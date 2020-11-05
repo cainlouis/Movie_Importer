@@ -9,6 +9,11 @@ import java.util.ArrayList;
  */
 public class KaggleImporter extends Processor {
 	
+	/**
+	 * A parameterized constructor that calls a super class to initialize its attributes.
+	 * @param source a string that contains the source of the textfile importer.
+	 * @param destination a string that contains the destination of the processed textfile.
+	 */
 	public KaggleImporter(String source, String destination) {
 		super(source, destination, true);
 	}
@@ -17,8 +22,8 @@ public class KaggleImporter extends Processor {
 	 * Gets an ArrayList called input from a source directory and creates an ArrayList named processed that will contain 
 	 * all of the Strings in input once processed. 
 	 * To do so, the Strings are separated where there is a tab space and put into a String array. 
-	 * Then the toString method from the class Movie is used to add the movie object to the processed Arraylist which is then returned
-	 * once all the string of input has been processed.  
+	 * Then the toString method from the class Movie is used to add the movie object to the processed Arraylist.
+	 * @return ArrayList<String> a list of all the processed string.  
 	 */
 	public ArrayList<String> process(ArrayList<String> input) {
 		ArrayList<String> processed = new ArrayList<String>();

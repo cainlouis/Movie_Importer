@@ -98,6 +98,12 @@ class MovieTests {
 		assertEquals(true, Utilities.isNumber(s));
 	}
 	/*******************TESTS FOR KAGGLE IMPORTER********************/
+	/**
+	 * @author Nael Louis
+	 * This method tests the process() method of the KaggleImporter class
+	 * Two ArrayList<String> are hardcoded, one, testList, as an input to process() and the other as the expected result 
+	 * to the process() method. 
+	 */
 	@Test
 	void testKaggleImporter() {
 		ArrayList<String> testList = new ArrayList<>();
@@ -113,6 +119,12 @@ class MovieTests {
 	}
 	
 	/*******************TESTS FOR NORMALIZER CLASS*******************/
+	/**
+	 * @author Nael Louis
+	 * This method tests the process() method of the normalizer class
+	 * Two ArrayList<String> are hardcoded, one, testList, as an input to process() and the other as the expected result 
+	 * to the process() method. 
+	 */
 	@Test 
 	void testNormalizer() {
 		ArrayList<String> testList = new ArrayList<>();
