@@ -18,7 +18,7 @@ public class Validator extends Processor{
 	public ArrayList<String> process(ArrayList<String> input) {
 		ArrayList<String> validMovies = new ArrayList<String>();
 		for (String line : input) {
-			if (isValidMovie(line)) {
+			if () {
 				validMovies.add(line);
 			}
 		}
