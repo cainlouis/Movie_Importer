@@ -1,5 +1,5 @@
 package movies.importer;
-
+import movies.utilities.*;
 public class Movie {
 	private String releaseYear;
 	private String name;
@@ -57,6 +57,27 @@ public class Movie {
 	 * */
 	public String getSource() {
 		return this.source;
+	}
+	/** 
+	 * @author Juan-Carlos Sreng-Flores
+	 * This method checks whether the inputs given in the constructor are valid inputs.
+	 * If the names are null or "", the method returns false.
+	 * If the releaseYear or the runtime is NaN, it also returns false.
+	 * If everything is acceptable according the conditions, it returns true;
+	 * 
+	 * @return boolean the validity of the Movie Object*/
+	public boolean isValidMovie() {
+		boolean valid = !(this.name == null || this.name.equals(""));
+		valid = valid && !(this.source == null || this.source.equals(""));
+		
+		try {
+			Integer.parseInt(this.releaseYear);
+			Integer.parseInt(this.runtime);
+		}
+		catch (NumberFormatException n) {
+			valid = false;
+		}
+		return valid;
 	}
 	/**
 	 * @author Nael Louis
