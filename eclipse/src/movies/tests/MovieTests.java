@@ -1,7 +1,7 @@
 package movies.tests;
-import movies.importer.Movie;
+import movies.importer.*;
 import static org.junit.jupiter.api.Assertions.*;
-
+import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
 class MovieTests {
@@ -68,7 +68,14 @@ class MovieTests {
 	}
 	
 	/******************TESTS FOR KAGGLE IMPORTER******************/
-	
+	@Test
+	void testKaggleImporter() {
+		ArrayList<String> testList = new ArrayList<>();
+		testList.add("Cast 1\tTitle\tDirector 1\tRuntime\tRelease Date\tYear");
+		testList.add("Brendan Fraser\tFast & Furious\tMaria Bello\t122 minutes\t05-11-2007\t2007");
+		testList.add("Brendan Fraser\tFast & Furious 2\t20-05-2010\t2010");
+		testList.add("John Hannah\tMoana\tMaria Bello\t134 minutes\t30-10-2005\t2005");
+	}
 	
 	/*******************TESTS FOR IMDB IMPORTER******************/
 	@Test
