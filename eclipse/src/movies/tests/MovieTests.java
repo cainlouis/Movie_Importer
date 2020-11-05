@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 
 class MovieTests {
 
+	/******************TESTS FOR MOVIE CLASS******************/
+	
 	/** @author Juan-Carlos Sreng-Flores
 	 * 	@author Nael Louis
 	 * This method tests the getter Method for the releaseYear attribute*/
@@ -58,4 +60,9 @@ class MovieTests {
 		Movie movie = new Movie("2016", "Moana", "Any runtime", "C:\\MyDirectory\\AnotherDirectory");
 		assertEquals("2016\tMoana\tAny runtime\tC:\\MyDirectory\\AnotherDirectory", movie.toString());
 	}
+	
+	/******************TESTS FOR KAGGLE IMPORTER******************/
+	
+	
+	/*******************TESTS FOR IMDB IMPORTER******************/
 }
