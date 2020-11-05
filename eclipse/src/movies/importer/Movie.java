@@ -6,10 +6,13 @@ public class Movie {
 	private String runtime;
 	private String source;
 	
+	/**
+	 * @author Nael Louis
+	 * @author Juan-Carlos Sreng-Flores
+	 * 
+	 * 
+	 * */
 	public Movie(String releaseYear, String name, String runtime, String source) {
-		if (releaseYear == null || name == null || runtime == null || source == null ) {
-			throw new IllegalArgumentException("INSERTED NULL VALUE IN CONSTRUCTOR.");
-		}
 		this.releaseYear = releaseYear;
 		this.name = name;
 		this.runtime = runtime;
