@@ -1,16 +1,18 @@
 package movies.tests;
-import movies.importer.Movie;
+import movies.importer.*;
+import java.io.*;
+import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
 class MovieTests {
 	//srcDir and outputDir for IMDB movie importer
-	public static String imdbSource = "";
-	public static String imdbOutput = "";
+	public static String imdbSourceDir = "";
+	public static String imdbOutputDir = "";
 	//srcDir and outputDir for KAGGLE movie importer
-	public static String kaggleSource = "";
-	public static String kaggleOutput ="";
+	public static String kaggleSourceDir = "";
+	public static String kaggleOutputDir ="";
 	
 	/******************TESTS FOR MOVIE CLASS******************/
 	
@@ -71,8 +73,16 @@ class MovieTests {
 	
 	
 	/*******************TESTS FOR IMDB IMPORTER******************/
+	/***
+	 * @author Juan-Carlos Sreng-Flores
+	 * This method tests the process() method 
+	 * */
 	@Test
-	void testImdbMovieImporter() {
+	void testImdbMovieImporterProcess() {
+		ImdbImporter imdb = new ImdbImporter(imdbSourceDir, imdbOutputDir);
+		ArrayList<String> input = new ArrayList<String>();
+		ArrayList<String> transformed = imdb.process(input);
+		
 		
 	}
 }
