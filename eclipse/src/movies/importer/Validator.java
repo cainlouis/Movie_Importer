@@ -16,23 +16,13 @@ public class Validator extends Processor{
 	}
 	
 	public ArrayList<String> process(ArrayList<String> input) {
-		String[] splitted;
-		Movie movie;
 		ArrayList<String> validMovies = new ArrayList<String>();
 		for (String line : input) {
-			splitted = line.split("\\t",-1);
-			movie = new Movie(splitted[0],splitted[1],splitted[2],splitted[3]);
-			if (isValidMovie(movie)) {
+			if (isValidMovie(line)) {
 				validMovies.add(line);
 			}
 		}
 		return input;
 	}
-	public static boolean isValidMovie(Movie movie) {
-		boolean valid;
-		valid = !((movie.getName() == null)||movie.getName() == "");
-		valid = valid && Utilities.isNumber(movie.getReleaseYear());
-		valid = valid && Utilities.isNumber(movie.getRuntime());
-		return valid;
-	}
+	
 }

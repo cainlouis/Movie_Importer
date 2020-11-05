@@ -1,5 +1,5 @@
 package movies.importer;
-
+import movies.utilities.*;
 public class Movie {
 	private String releaseYear;
 	private String name;
@@ -57,6 +57,18 @@ public class Movie {
 	 * */
 	public String getSource() {
 		return this.source;
+	}
+	public boolean isValidMovie() {
+		boolean valid = !(this.name == null || this.name.equals(""));
+		valid = valid && !(this.source == null || this.source.equals(""));
+		try {
+			Integer.parseInt(this.releaseYear);
+			Integer.parseInt(this.runtime);
+		}
+		catch (NumberFormatException n) {
+			valid = false;
+		}
+		return valid;
 	}
 	/**
 	 * @author Nael Louis
