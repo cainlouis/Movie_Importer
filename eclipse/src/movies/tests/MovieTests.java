@@ -1,5 +1,6 @@
 package movies.tests;
 import movies.importer.*;
+import movies.utilities.*;
 import java.io.*;
 import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -69,7 +70,33 @@ class MovieTests {
 		assertEquals("2016\tMoana\tAny runtime\tC:\\MyDirectory\\AnotherDirectory", movie.toString());
 	}
 	/*******************TESTS FOR UTILITIES CLASS********************/
-	
+	/**
+	 * @author Juan-Carlos Sreng-Flores
+	 * Tests the isNumber from Utilities class.
+	 * The tests consist on testing for negative numbers, as well as positive numbers.
+	 * */
+	@Test
+	void testUtilitiesIsNumber() {
+		String s;
+		//Test for true cases.
+		s = "5";
+		assertEquals(true, Utilities.isNumber(s));
+		s="126546864";
+		assertEquals(true, Utilities.isNumber(s));
+		s="-2365136";
+		assertEquals(true, Utilities.isNumber(s));
+		s="0";
+		assertEquals(true, Utilities.isNumber(s));
+		//Tests for false cases.
+		s = "54674564674 ";
+		assertEquals(false, Utilities.isNumber(s));
+		s = "34543jk31345";
+		assertEquals(false, Utilities.isNumber(s));
+		s = "-31123jk35";
+		assertEquals(false, Utilities.isNumber(s));
+		s="-0";
+		assertEquals(true, Utilities.isNumber(s));
+	}
 	/*******************TESTS FOR KAGGLE IMPORTER********************/
 	
 	
@@ -97,5 +124,14 @@ class MovieTests {
 		expected.add("\tsampleTitle\t\timdb");
 		assertEquals(expected, transformed);
 	}
-	/*******************TESTS FOR IMDB IMPORTER**********************/
+	/*******************TESTS FOR VALIDATOR**************************/
+	/**
+	 * @author Juan-Carlos Sreng-Flores
+	 * This method will test the isValid method from the Validator class
+	 * The method will be tested by giving as input some invalid movies,
+	 * and some valid movies.*/
+	@Test
+	void testValidatorIsValid() {
+		
+	}
 }

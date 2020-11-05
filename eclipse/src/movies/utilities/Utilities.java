@@ -1,4 +1,4 @@
-package movies.importer;
+package movies.utilities;
 
 public class Utilities {
 	
