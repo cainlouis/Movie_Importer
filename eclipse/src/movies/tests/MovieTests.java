@@ -68,12 +68,15 @@ class MovieTests {
 		Movie movie = new Movie("2016", "Moana", "Any runtime", "C:\\MyDirectory\\AnotherDirectory");
 		assertEquals("2016\tMoana\tAny runtime\tC:\\MyDirectory\\AnotherDirectory", movie.toString());
 	}
+	/*******************TESTS FOR UTILITIES CLASS********************/
 	
-	/******************TESTS FOR KAGGLE IMPORTER******************/
+	/*******************TESTS FOR KAGGLE IMPORTER********************/
 	
 	
-	/*******************TESTS FOR IMDB IMPORTER******************/
-	/***
+	/*******************TESTS FOR NORMALIZER CLASS*******************/
+	
+	/*******************TESTS FOR IMDB IMPORTER**********************/
+	/**
 	 * @author Juan-Carlos Sreng-Flores
 	 * This method tests the process() method.
 	 * It will give some sample inputs as an ArrayList<String> and 
@@ -94,4 +97,5 @@ class MovieTests {
 		expected.add("\tsampleTitle\t\timdb");
 		assertEquals(expected, transformed);
 	}
+	/*******************TESTS FOR IMDB IMPORTER**********************/
 }
