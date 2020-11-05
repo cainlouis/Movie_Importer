@@ -13,8 +13,8 @@ public class Normalizer extends Processor {
 		String runtime;
 		ArrayList<String> processed = new ArrayList<>();
 		
-		for (int i = 0; i < input.size(); i++) {
-			String[] inputArr = input.get(i).split("\\t");
+		for (String line : input) {
+			String[] inputArr = line.split("\\t");
 			Movie newMovie = new Movie(inputArr[0], inputArr[1], inputArr[2], inputArr[3]);
 			
 			for (int j = 0; j < inputArr.length; j++) {
