@@ -93,8 +93,5 @@ class MovieTests {
 		expected.add("1911\tDen sorte drøm\t53\timdb");
 		expected.add("\tsampleTitle\t\timdb");
 		assertEquals(expected, transformed);
-		
-		
-		
 	}
 }
