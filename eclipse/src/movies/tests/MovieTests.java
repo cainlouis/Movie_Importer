@@ -157,6 +157,7 @@ class MovieTests {
 	void testValidatorIsValid() {
 		
 	}
+	/**********************************To test further*/
  	@Test
 	void testValidatorProcess() {
 		Validator validator = new Validator(r2d2SourceDir, r2d2OutputDir);
@@ -168,7 +169,7 @@ class MovieTests {
 		input.add("");
 		ArrayList<String> validated = validator.process(input);
 		ArrayList<String> expected = new ArrayList<String>();
-		expected.add("");
+		expected.add("1911\tDen sorte dr�m\t53\timdb");
 		assertEquals(expected, validated);
 	}
 }

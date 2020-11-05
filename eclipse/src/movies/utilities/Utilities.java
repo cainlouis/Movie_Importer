@@ -1,5 +1,5 @@
 package movies.utilities;
-
+import movies.importer.*;
 public class Utilities {
 	
 	/**
