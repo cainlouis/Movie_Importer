@@ -9,11 +9,11 @@ import org.junit.jupiter.api.Test;
 
 class MovieTests {
 	//srcDir and outputDir for IMDB movie importer
-	public static String imdbSourceDir = "";
-	public static String imdbOutputDir = "";
+	public static String r2d2SourceDir = "";
+	public static String r2d2OutputDir = "";
 	//srcDir and outputDir for KAGGLE movie importer
-	public static String kaggleSourceDir = "";
-	public static String kaggleOutputDir ="";
+	public static String c3P0SourceDir = "";
+	public static String c3P0OutputDir ="";
 	
 	/******************TESTS FOR MOVIE CLASS******************/
 	
@@ -132,6 +132,6 @@ class MovieTests {
 	 * and some valid movies.*/
 	@Test
 	void testValidatorIsValid() {
-		
+		Validator validator = new Validator(imdbSourceDir, imdbOutputDir);
 	}
 }
