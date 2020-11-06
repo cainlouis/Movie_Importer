@@ -28,9 +28,13 @@ public class ImdbImporter extends Processor{
 		ArrayList<String> transform = new ArrayList<String>();
 		String[] splitted;
 		for (String line: input) {
-			splitted = line.split("\\t",-1);
-			Movie movie = new Movie(splitted[3], splitted[1], splitted[6],"imdb");
-			transform.add(movie.toString());
+			if (line != null) {
+				splitted = line.split("\\t",-1);
+				if(splitted.length >= 7) {
+					Movie movie = new Movie(splitted[3], splitted[1], splitted[6],"imdb");
+					transform.add(movie.toString());
+				}
+			}
 		}
 		return transform;
 	}

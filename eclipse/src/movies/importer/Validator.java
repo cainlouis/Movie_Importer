@@ -25,7 +25,8 @@ public class Validator extends Processor{
 	public ArrayList<String> process(ArrayList<String> input) {
 		ArrayList<String> validMovies = new ArrayList<String>();
 		for (String line : input) {	 
-			 if(isValidMovie(line)) {
+			//helper method call to check validity of String line. 
+			if(isValidMovie(line)) {
 			 	validMovies.add(line);
 			 }
 		}
@@ -33,35 +34,37 @@ public class Validator extends Processor{
 	}
 	/** 
 	 * @author Juan-Carlos Sreng-Flores
-	 * This is a helper method. It is set inside the Validator class because
-	 * It respects the purpose of Validating data for the Pipeline, which also respects the 
-	 * entity of the Object Validator. 
+	 * This is a helper method in order to make the reading experience more enjoyable.
 	 * This method checks whether the inputs given in the String line are valid inputs.
 	 * If the line does not contain the right amount of \t to create a Movie it returns false.
 	 * If the names are null or "", the method returns false.
 	 * If the releaseYear or the runtime is NaN, it also returns false.
 	 * If everything is acceptable according the conditions, it returns true;
 	 * @param line a String containing the information to create a Movie.
-	 * @return boolean the validity of the Movie Object*/
-	public static boolean isValidMovie(String line) {
+	 * @return boolean the validity of the Movie Object
+	 * */
+	private static boolean isValidMovie(String line) {
 		boolean valid = false;
 		if(!(line==null || line.equals(""))) {
 			String[] splitter = line.split("\\t",-1);
-			 if(splitter.length>=4) {
+			/* If the String does not have enough \t characters to create a movie, the method returns false. 
+			 * We check the length so that when creating a Movie object, we do not get a IndexOutOfBoundException.
+			 */
+			if(splitter.length>=4) {
+				/* Creates new movie object instance since it is easier to access attributes
+				 * instead of tracking down indexes in debugging purposes.
+				 */
 				Movie movie = new Movie(splitter[0],splitter[1],splitter[2],splitter[3]);
+				//Checks whether name or source attributes are not null or empty strings (i.e "").
 				valid = !(movie.getName() == null || movie.getName().equals(""));
 				valid = valid && !(movie.getSource() == null || movie.getSource().equals(""));
-				
-				try {
-					Integer.parseInt(movie.getReleaseYear());
-					Integer.parseInt(movie.getRuntime());
-				}
-				catch (NumberFormatException n) {
-					valid = false;
-				}
+				/* This method uses the isNumber(String) from Utilities class to see if it is
+				 * a number or not. If it is not, then valid will be put to false because of && operand. 
+				 */
+				valid = valid && Utilities.isNumber(movie.getReleaseYear());
+				valid = valid && Utilities.isNumber(movie.getRuntime());
 			 }
 		}
-		System.out.println(valid);
 		return valid;
 	}
 	
