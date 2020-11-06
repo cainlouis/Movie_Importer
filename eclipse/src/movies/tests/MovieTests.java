@@ -154,22 +154,44 @@ class MovieTests {
 		assertEquals(true, test2.equals(test1));
 		
 	}
+	/**
+	 * This test method tests the correctness of the mergeSimilarMovie in the Movie's class.
+	 * Two Movie Objects are created from hardcoded initialization values, then tested on the correctness
+	 * of the method mergeSimilarMovie. 
+	 * The method similarMovie is supposed to return null if the movies are not similar. On the other hand,
+	 * if they are similar (i.e test1.equals(test2)==true), the mergeSimilarMovie method returns a movie Object.
+	 */
 	@Test
-	void testMergeSimilarMovie() {
-		//Should be false since the runtime are not numbers.
+	void testMovieMergeSimilarMovie() {
+		//Should be false since the runtime and releaseYear are not numbers.
 		Movie test1 = new Movie("","","","");
 		Movie test2 = new Movie("","","","");
 		Movie merged = test1.mergeSimilarMovie(test2);
-		assertEquals(null, merged);
+		assertEquals("", merged!=null?merged.toString():"");
 		merged = test2.mergeSimilarMovie(test1);
 		//Should pass the test since 
 		test1 = new Movie("2020", "DrillBit", "1", "imdb");
 		test2 = new Movie("2020", "DrillBit", "1", "kaggle");
 		merged = test1.mergeSimilarMovie(test2);
-		assertEquals("imdb;kaggle", merged);
-		assertEquals("kaggle;imdb", test2.mergeSimilarMovie(test1).getSource());
-		
-		
+		assertEquals("2020\tDrillBit\t1\timdb;kaggle", merged!=null?merged.toString():"");
+		merged = test2.mergeSimilarMovie(test1);
+		assertEquals("2020\tDrillBit\t1\tkaggle;imdb", merged!=null?merged.toString():"");
+		//Should pass the following test
+		test1 = new Movie("2020", "", "1", "imdb");
+		test2 = new Movie("2020", "", "5", "kaggle");
+		merged = test2.mergeSimilarMovie(test1);
+		merged = merged.mergeSimilarMovie(test1);
+		assertEquals("2020\t\t5\tkaggle;imdb;imdb", merged!=null?merged.toString():"");
+		//Should fail the test
+		test1 = new Movie("2020", "MyTest", "-1", "IMDBIMPORTER");
+		test2 = new Movie("2020", "MyTest", "5", "whateverSource");
+		merged = test1.mergeSimilarMovie(test2);
+		assertEquals("", merged!=null?merged.toString():"");
+		//Should pass the test
+		test1 = new Movie("2020", "MyTest", "-1", "IMDBIMPORTER");
+		test2 = new Movie("2020", "MyTest", "4", "whateverSource");
+		merged = test1.mergeSimilarMovie(test2);
+		assertEquals("2020\tMyTest\t-1\tIMDBIMPORTER;whateverSource", merged!=null?merged.toString():"");
 	}
 	/*******************TESTS FOR UTILITIES CLASS********************/
 	/**
