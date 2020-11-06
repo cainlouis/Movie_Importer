@@ -295,22 +295,30 @@ class MovieTests {
 	void testValidatorProcess() {
 		Validator validator = new Validator(r2d2SourceDir, r2d2OutputDir);
 		ArrayList<String> input = new ArrayList<String>();
+		ArrayList<String> expected = new ArrayList<String>();
+		ArrayList<String> validated;
 		//should not be valid lines
+		input.add(null);
 		input.add("year\ttitle\tduration\timdb");
 		input.add("\tsampleTitle\t\timdb");
 		input.add("");
 		input.add("");
+		input.add(null);
 		input.add("\n\n\t\t");
 		input.add("-10000\tAvegers\t180 \tkaggle");
 		//should  be valid lines
 		input.add("-0\tmyTitle\t0\tkaggle");
 		input.add("-10000\tAvengers\t180\tkaggle");
 		input.add("1911\tDen sorte dr�m\t53\timdb");
-		ArrayList<String> validated = validator.process(input);
-		ArrayList<String> expected = new ArrayList<String>();
-		expected.add("-0\tmyTitle\t0\tkaggle");
-		expected.add("-10000\tAvengers\t180\tkaggle");
-		expected.add("1911\tDen sorte dr�m\t53\timdb");
-		assertEquals(expected, validated);
+		try {
+			validated = validator.process(input);
+			expected.add("-0\tmyTitle\t0\tkaggle");
+			expected.add("-10000\tAvengers\t180\tkaggle");
+			expected.add("1911\tDen sorte dr�m\t53\timdb");
+			assertEquals(expected, validated);
+		}
+		catch (Exception e) {
+			fail("Should not receive an Exception: "+e.getMessage());
+		}
 	}
 }

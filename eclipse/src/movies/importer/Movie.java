@@ -22,6 +22,28 @@ public class Movie {
 		this.runtime = runtime;
 		this.source = source;
 	}
+	/** 
+	 * @author Juan-Carlos Sreng-Flores
+	 * This is a constructor method overloading. It takes as input a String and creates a movie from it.
+	 * If the String does not satisfy the conditions (i.e have a \t 4 times) it throws an IllegalArgumentException.
+	 * @param movie String containing the same format as Movie.toString() return method.
+	 */
+	public Movie(String movie) {
+		boolean isValidMovie = false;
+		if (movie != null) {
+			String[] splitted = movie.split("\\t",-1);
+			if (splitted.length == 4) {
+				this.releaseYear = splitted[0];
+				this.name = splitted[1];
+				this.runtime = splitted[2];
+				this.source = splitted[3];
+				isValidMovie = true;
+			}
+		}
+		if(!isValidMovie) {
+			throw new IllegalArgumentException("STRING PROVIDED IS NOT VALID.");
+		}
+	}
 	/**
 	 * @author Nael Louis
 	 * This method is a getter method for releaseYear attribute 

@@ -51,7 +51,7 @@ public class Validator extends Processor{
 	 * */
 	private static boolean isValidMovie(String line) {
 		boolean valid = false;
-		if(!(line==null || line.equals(""))) {
+		if((line!=null)) {
 			String[] splitter = line.split("\\t",-1);
 			/* If the String does not have enough \t characters to create a movie, the method returns false. 
 			 * We check the length so that when creating a Movie object, we do not get a IndexOutOfBoundException.
