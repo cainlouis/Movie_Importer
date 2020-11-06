@@ -67,6 +67,8 @@ public class Movie {
 	 * This method overrides the inherited equals method from the Object class in
 	 * order to be used with a more specific purpose of equality between two Movie 
 	 * objects.
+	 * Two movies are considered the same if they have exactly the same title and release year and the 
+	 * runtime between the two is no more than 5 minutes apart.
 	 * @param object Object the Object to be compared to the Movie instance Object.
 	 * @return boolean representing if the objects are equal or not.
 	 */
@@ -75,8 +77,17 @@ public class Movie {
 		boolean isValid = false;
 		if(object instanceof Movie) {
 			Movie movie = (Movie)object;
-			isValid = this.name.equals(movie.getName());/*****************************to finish*/
-			if (isValid) {
+			isValid = this.name.equals(movie.getName()) && this.releaseYear.equals(movie.getReleaseYear());
+			try {
+				int instanceRuntime  = Integer.parseInt(this.runtime);
+				int paramRuntime = Integer.parseInt(movie.getRuntime());
+				if (instanceRuntime<paramRuntime)
+					isValid = isValid && ((paramRuntime-instanceRuntime)<=5);
+				else 
+					isValid = isValid && ((instanceRuntime-paramRuntime)<=5);
+			}
+			catch (NumberFormatException e) {
+				isValid = false;
 			}
 		}
 		return isValid;

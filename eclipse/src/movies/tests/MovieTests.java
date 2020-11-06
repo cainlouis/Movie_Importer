@@ -22,7 +22,7 @@ class MovieTests {
 	 * This method tests the getter Method for the releaseYear attribute*/
 	@Test
 	void testMovieGetReleaseYear() {
-		Movie movie = new Movie("2016", "Moana", "Any runtime", "C:\\MyDirectory\\AnotherDirectory");
+		Movie movie = new Movie("2016", "Moana", "Any runtime", "imdb");
 		assertEquals("2016", movie.getReleaseYear());
 	}
 	
@@ -32,7 +32,7 @@ class MovieTests {
 	 * This method tests the getter method for the name attribute.*/
 	@Test
 	void testMovieGetName() {
-		Movie movie = new Movie("2016", "Moana", "Any runtime", "C:\\MyDirectory\\AnotherDirectory");
+		Movie movie = new Movie("2016", "Moana", "Any runtime", "kaggle");
 		assertEquals("Moana", movie.getName());
 	}
 	
@@ -42,7 +42,7 @@ class MovieTests {
 	 * This method tests the getter method for the runtime attribute.*/
 	@Test
 	void testMovieGetRuntime() {
-		Movie movie = new Movie("2016", "Moana", "Any runtime", "C:\\MyDirectory\\AnotherDirectory");
+		Movie movie = new Movie("2016", "Moana", "Any runtime", "imdb");
 		assertEquals("Any runtime", movie.getRuntime());
 	}
 	
@@ -52,8 +52,8 @@ class MovieTests {
 	 * This method tests the getter method for the source attribute.*/
 	@Test
 	void testMovieGetSource() {
-		Movie movie = new Movie("2016", "Moana", "Any runtime", "C:\\MyDirectory\\AnotherDirectory");
-		assertEquals("C:\\MyDirectory\\AnotherDirectory", movie.getSource());
+		Movie movie = new Movie("2016", "Moana", "Any runtime", "imdb");
+		assertEquals("imdb", movie.getSource());
 	}
 	
 	/**
@@ -66,8 +66,93 @@ class MovieTests {
 	 * */
 	@Test 
 	void testMovieToString() {
-		Movie movie = new Movie("2016", "Moana", "Any runtime", "C:\\MyDirectory\\AnotherDirectory");
-		assertEquals("2016\tMoana\tAny runtime\tC:\\MyDirectory\\AnotherDirectory", movie.toString());
+		Movie movie = new Movie("2016", "Moana", "Any runtime", "kaggle");
+		assertEquals("2016\tMoana\tAny runtime\tkaggle", movie.toString());
+	}
+	/**
+	 * @author Juan-Carlos Sreng-Flores
+	 * This method tests the overriden equals method from the Object class
+	 * in the Movie class.
+	 * We call the equals method on both Movie object to make sure no mistake
+	 * escapes these tests.
+	 */
+	@Test
+	void testMovieEquals() {
+		//Some sample tests ...
+		//Should fail the test since releaseYear is not a number.
+		Movie test1 = new Movie("","","","");
+		Movie test2 = new Movie("","","","");
+		assertEquals(false, test1.equals(test2));
+		assertEquals(false, test2.equals(test1));
+		//Should fail the test since runtime is not a number.
+		test1 = new Movie("2016", "Moana", "Any runtime", "kaggle");
+		test2 = new Movie("2016", "Moana", "Any runtime", "kaggle");
+		assertEquals(false, test1.equals(test2));
+		assertEquals(false, test2.equals(test1));
+		//Test for releaseYear.
+		//Should pass the test.
+		test1 = new Movie("2016", "Moana", "60", "imdb");
+		test2 = new Movie("2016", "Moana", "60", "imdb");
+		assertEquals(true, test1.equals(test2));
+		assertEquals(true, test2.equals(test1));
+		//Should fail the test since year is different.
+		test1 = new Movie("5106", "Moana", "60", "imdb");
+		test2 = new Movie("2016", "Moana", "60", "imdb");
+		assertEquals(false, test1.equals(test2));
+		assertEquals(false, test2.equals(test1));
+		//Test name of Movie
+		//Should fail the test since name is not exactly the same.
+		test1 = new Movie("2016", "Moanaa", "60", "imdb");
+		test2 = new Movie("2016", "Moana", "60", "imdb");
+		assertEquals(false, test1.equals(test2));
+		assertEquals(false, test2.equals(test1));
+		//Should fail the test since lowercase should already be implemented and name is not exactly the same.
+		test1 = new Movie("2016", "moana", "60", "imdb");
+		test2 = new Movie("2016", "Moana", "60", "imdb");
+		assertEquals(false, test1.equals(test2));
+		assertEquals(false, test2.equals(test1));
+		//Should pass the test since the names are exactly the same.
+		test1 = new Movie("913", "Not Moana Again", "300", "kaggle");
+		test2 = new Movie("913", "Not Moana Again", "300", "kaggle");
+		assertEquals(true, test1.equals(test2));
+		assertEquals(true, test2.equals(test1));
+		//Test runtime of Movie
+		//Should fail the test since runtime not a number.
+		test1 = new Movie("2020", "Avengers", "e60", "imdb");
+		test2 = new Movie("2020", "Avengers", "60", "imdb");
+		assertEquals(false, test1.equals(test2));
+		assertEquals(false, test2.equals(test1));
+		//Should pass the test
+		//Should pass the test since runtime are equal.
+		test1 = new Movie("2020", "DrillBit", "60", "imdb");
+		test2 = new Movie("2020", "DrillBit", "60", "imdb");
+		assertEquals(true, test1.equals(test2));
+		assertEquals(true, test2.equals(test1));
+		//Should pass the test since they are within 5 minutes between each other.
+		test1 = new Movie("2020", "DrillBit", "65", "imdb");
+		test2 = new Movie("2020", "DrillBit", "60", "imdb");
+		assertEquals(true, test1.equals(test2));
+		assertEquals(true, test2.equals(test1));
+		test1 = new Movie("2020", "DrillBit", "64", "imdb");
+		test2 = new Movie("2020", "DrillBit", "60", "imdb");
+		assertEquals(true, test1.equals(test2));
+		assertEquals(true, test2.equals(test1));
+		test1 = new Movie("2020", "DrillBit", "12", "imdb");
+		test2 = new Movie("2020", "DrillBit", "18", "imdb");
+		assertEquals(false, test1.equals(test2));
+		assertEquals(false, test2.equals(test1));
+		//Should fail the test since they are not within 5 minutes between each other.
+		test1 = new Movie("2020", "DrillBit", "65", "imdb");
+		test2 = new Movie("2020", "DrillBit", "59", "imdb");
+		assertEquals(false, test1.equals(test2));
+		assertEquals(false, test2.equals(test1));
+		//Test source of Movie.
+		//Should pass the test since the equals does not take into consideration the source to determine equality.
+		test1 = new Movie("2020", "DrillBit", "1", "imdb");
+		test2 = new Movie("2020", "DrillBit", "1", "kaggle");
+		assertEquals(false, test1.equals(test2));
+		assertEquals(false, test2.equals(test1));
+		
 	}
 	/*******************TESTS FOR UTILITIES CLASS********************/
 	/**

@@ -69,7 +69,12 @@ public class Validator extends Processor{
 				 */
 				valid = valid && Utilities.isNumber(movie.getReleaseYear());
 				valid = valid && Utilities.isNumber(movie.getRuntime());
-				//We include 0 in this case because it could be 5 seconds for example.
+				/**
+				 * We include 0 in this case because it could be 5 seconds for example.
+				 * If valid is false, the Integer.parseInt() method will not throw an Exception since the && operand
+				 * stops it from doing it.
+				 * If valid is true, then from the isNumber() method, we are safe to parse the runtime attribute.
+				 */
 				valid = valid && Integer.parseInt(movie.getRuntime()) >= 0;
 			 }
 		}
