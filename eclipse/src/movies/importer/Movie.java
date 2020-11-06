@@ -62,6 +62,30 @@ public class Movie {
 	public String getSource() {
 		return this.source;
 	}
+	/** 
+	 * @author Juan-Carlos Sreng-Flores
+	 * The method mergeSimilarMovie is installed in the Movie class
+	 * since it is very useful in terms of Object instances (i.e instead of using a method taking 2 parameters)
+	 * and also because it belongs to an entity of Movie type Object.
+	 * This method makes sure that the movies are equal(similar) before merging, then
+	 * a new Movie object will hold the values of the source movie for the first 3 attributes:
+	 * releaseYear, name, and runtime. 
+	 * As for the source if they sources are equal, the merged movie will keep 1 source.
+	 * If the sources are different, it will concatenate the sources this way:
+	 * 		"source1;source2" where source1 is the instance Movie Object and source2 is the parameter of the method.
+	 * Once the movie is merged it is returned. 
+	 * If the two Movie objects are not equal, then the method returns null.
+	 * @param duplicate a Movie Object where it the instance Movie Object is merged with.
+	 * @return Movie object containing the merged Movie
+	 */
+	public Movie mergeSimilarMovie(Movie duplicate) {
+		Movie merged = null;
+		if (this.equals(duplicate)) {
+			String mergedSource = this.source.equals(duplicate.source)?this.source:this.source+";"+duplicate.source;
+			merged = new Movie(this.releaseYear, this.name, this.runtime, mergedSource);
+		}
+		return merged;
+	}
 	/**
 	 * @author Juan-Carlos Sreng-Flores
 	 * This method overrides the inherited equals method from the Object class in
