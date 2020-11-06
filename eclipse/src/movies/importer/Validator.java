@@ -11,6 +11,12 @@ import movies.utilities.*;
  */
 
 public class Validator extends Processor{
+	/**
+	 * Constructor method, calls superClass for initialization and the file read does not 
+	 * contain a header.
+	 * @param sourceDir String the source directory for file reading.
+	 * @param outputDir String the output directory for file writing.
+	 */
 	public Validator(String sourceDir, String outputDir) {
 		super(sourceDir, outputDir, false);
 	}
