@@ -150,8 +150,25 @@ class MovieTests {
 		//Should pass the test since the equals does not take into consideration the source to determine equality.
 		test1 = new Movie("2020", "DrillBit", "1", "imdb");
 		test2 = new Movie("2020", "DrillBit", "1", "kaggle");
-		assertEquals(false, test1.equals(test2));
-		assertEquals(false, test2.equals(test1));
+		assertEquals(true, test1.equals(test2));
+		assertEquals(true, test2.equals(test1));
+		
+	}
+	@Test
+	void testMergeSimilarMovie() {
+		//Should be false since the runtime are not numbers.
+		Movie test1 = new Movie("","","","");
+		Movie test2 = new Movie("","","","");
+		Movie merged = test1.mergeSimilarMovie(test2);
+		assertEquals(null, merged);
+		merged = test2.mergeSimilarMovie(test1);
+		//Should pass the test since 
+		test1 = new Movie("2020", "DrillBit", "1", "imdb");
+		test2 = new Movie("2020", "DrillBit", "1", "kaggle");
+		merged = test1.mergeSimilarMovie(test2);
+		assertEquals("imdb;kaggle", merged);
+		assertEquals("kaggle;imdb", test2.mergeSimilarMovie(test1).getSource());
+		
 		
 	}
 	/*******************TESTS FOR UTILITIES CLASS********************/
