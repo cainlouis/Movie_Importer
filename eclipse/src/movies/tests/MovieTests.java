@@ -143,7 +143,7 @@ class MovieTests {
 	 * This method tests the process() method.
 	 * It will give some sample inputs as an ArrayList<String> and 
 	 * check if the return is processed properly.
-	 * */
+	 */
 	@Test
 	void testImdbMovieImporterProcess() {
 		ImdbImporter imdb = new ImdbImporter(r2d2SourceDir, r2d2OutputDir);
@@ -162,25 +162,30 @@ class MovieTests {
 	/*******************TESTS FOR VALIDATOR**************************/
 	/**
 	 * @author Juan-Carlos Sreng-Flores
-	 * This method will test the isValid method from the Validator class
-	 * The method will be tested by giving as input some invalid movies,
-	 * and some valid movies.*/
-	@Test
-	void testValidatorIsValid() {
-		
-	}
-	/**********************************To test further*/
+	 * This test inserts in the process method the input ArrayList<String>
+	 * containing valid movie format and invalid possible movie formats.
+	 * The test calls the process method and assertsEquals what is expected, and what 
+	 * is validated by the process method from Validator class.
+	 */
  	@Test
 	void testValidatorProcess() {
 		Validator validator = new Validator(r2d2SourceDir, r2d2OutputDir);
 		ArrayList<String> input = new ArrayList<String>();
+		//should not be valid lines
 		input.add("year\ttitle\tduration\timdb");
-		input.add("1911\tDen sorte dr�m\t53\timdb");
 		input.add("\tsampleTitle\t\timdb");
 		input.add("");
 		input.add("");
+		input.add("\n\n\t\t");
+		input.add("-10000\tAvegers\t180 \tkaggle");
+		//should  be valid lines
+		input.add("-0\tmyTitle\t0\tkaggle");
+		input.add("-10000\tAvengers\t180\tkaggle");
+		input.add("1911\tDen sorte dr�m\t53\timdb");
 		ArrayList<String> validated = validator.process(input);
 		ArrayList<String> expected = new ArrayList<String>();
+		expected.add("-0\tmyTitle\t0\tkaggle");
+		expected.add("-10000\tAvengers\t180\tkaggle");
 		expected.add("1911\tDen sorte dr�m\t53\timdb");
 		assertEquals(expected, validated);
 	}

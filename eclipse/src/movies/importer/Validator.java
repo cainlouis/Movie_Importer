@@ -63,6 +63,8 @@ public class Validator extends Processor{
 				 */
 				valid = valid && Utilities.isNumber(movie.getReleaseYear());
 				valid = valid && Utilities.isNumber(movie.getRuntime());
+				//We include 0 in this case because it could be 5 seconds for example.
+				valid = valid && Integer.parseInt(movie.getRuntime()) >= 0;
 			 }
 		}
 		return valid;
