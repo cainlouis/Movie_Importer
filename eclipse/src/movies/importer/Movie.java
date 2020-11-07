@@ -1,5 +1,4 @@
 package movies.importer;
-import movies.utilities.*;
 public class Movie {
 	private String releaseYear;
 	private String name;

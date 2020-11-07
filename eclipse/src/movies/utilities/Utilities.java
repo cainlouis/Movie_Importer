@@ -1,9 +1,8 @@
 package movies.utilities;
-import movies.importer.*;
 public class Utilities {
 	
 	/**
-	 * @autrhor Juan-Carlos Sreng-Flores
+	 * @author Juan-Carlos Sreng-Flores
 	 * This method performs a try catch to find out if the 
 	 * String given is a number.
 	 * @param s String that possibly contains a number converted in String.

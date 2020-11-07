@@ -29,16 +29,21 @@ public class Normalizer extends Processor {
 		ArrayList<String> processed = new ArrayList<>();
 		
 		for (String line : input) {
-			String[] inputArr = line.split("\\t");
-			//Create a movie object to get the name and runtime
-			Movie newMovie = new Movie(inputArr[0], inputArr[1], inputArr[2], inputArr[3]);
-			//Change the name into lower case and split the runtime string to get the first word
-			inputArr[1] = inputArr[1].toLowerCase();
-			String[] runtimeArr = newMovie.getRuntime().split("\\s");
-			inputArr[2] = runtimeArr[0];
-			//Recreate the movie object to get the new String
-			Movie toList = new Movie(inputArr[0], inputArr[1], inputArr[2], inputArr[3]);
-			processed.add(toList.toString());
+			if(line != null) {
+				String[] inputArr = line.split("\\t",-1);
+				//Make sure that program doesn't throw IndexOutOfBoundException.
+				if (inputArr.length >= 4) {
+					//Create a movie object to get the name and runtime
+					Movie newMovie = new Movie(inputArr[0], inputArr[1], inputArr[2], inputArr[3]);
+					//Change the name into lower case and split the runtime string to get the first word
+					inputArr[1] = inputArr[1].toLowerCase();
+					String[] runtimeArr = newMovie.getRuntime().split("\\s");
+					inputArr[2] = runtimeArr[0];
+					//Recreate the movie object to get the new String
+					Movie toList = new Movie(inputArr[0], inputArr[1], inputArr[2], inputArr[3]);
+					processed.add(toList.toString());
+				}
+			}
 		}
 		return processed;
 	}

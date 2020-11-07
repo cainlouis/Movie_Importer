@@ -27,15 +27,16 @@ public class KaggleImporter extends Processor {
 	 */
 	public ArrayList<String> process(ArrayList<String> input) {
 		ArrayList<String> processed = new ArrayList<String>();
-		String[] separated = input.get(0).split("\\t");
-		int columnNum = separated.length; 
+		String[] separated;
 		//Create a movie object and add the string from toString() to the processed ArrayList 
 		for (String line : input) {
-			separated = line.split("\\t");
-			//if the amount of column is correct create the object
-			if (separated.length == columnNum) {
-				Movie newMovie = new Movie(separated[20], separated[15], separated[13], "kaggle");
-				processed.add(newMovie.toString());
+			if(line != null) {
+				separated = line.split("\\t",-1);
+				//if the amount of column is correct create the object
+				if (separated.length >= 21) {
+					Movie newMovie = new Movie(separated[20], separated[15], separated[13], "kaggle");
+					processed.add(newMovie.toString());
+				}
 			}
 		}
 		return processed;
