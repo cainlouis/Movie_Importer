@@ -60,9 +60,10 @@ public class Validator extends Processor{
 				/* Creates new movie object instance since it is easier to access attributes
 				 * instead of tracking down indexes in debugging purposes.
 				 */
+				//Using the split method, and making sure there are 4 elements in array, we are ensure that the inputs are non-null values.
 				Movie movie = new Movie(splitter[0],splitter[1],splitter[2],splitter[3]);
 				//Checks whether name or source attributes are not null or empty strings (i.e "").
-				valid = !(movie.getName() == null || movie.getName().equals(""));
+				valid = !movie.getName().equals("");
 				valid = valid && !(movie.getSource() == null || movie.getSource().equals(""));
 				/* This method uses the isNumber(String) from Utilities class to see if it is
 				 * a number or not. If it is not, then valid will be put to false because of && operand. 

@@ -34,12 +34,14 @@ public class Normalizer extends Processor {
 				//Make sure that program doesn't throw IndexOutOfBoundException.
 				if (inputArr.length >= 4) {
 					//Create a movie object to get the name and runtime
+					//Using the split method, and making sure there are 4 elements, we are ensure that the inputs are non-null values.
 					Movie newMovie = new Movie(inputArr[0], inputArr[1], inputArr[2], inputArr[3]);
 					//Change the name into lower case and split the runtime string to get the first word
 					inputArr[1] = inputArr[1].toLowerCase();
 					String[] runtimeArr = newMovie.getRuntime().split("\\s");
 					inputArr[2] = runtimeArr[0];
 					//Recreate the movie object to get the new String
+					//Using the split method, we are ensure that the inputs are non-null values.
 					Movie toList = new Movie(inputArr[0], inputArr[1], inputArr[2], inputArr[3]);
 					processed.add(toList.toString());
 				}

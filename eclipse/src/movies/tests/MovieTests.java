@@ -180,7 +180,7 @@ class MovieTests {
 		test2 = new Movie("2020", "", "5", "kaggle");
 		merged = test2.mergeSimilarMovie(test1);
 		merged = merged.mergeSimilarMovie(test1);
-		assertEquals("2020\t\t5\tkaggle;imdb;imdb", merged!=null?merged.toString():"");
+		assertEquals("2020\t\t5\tkaggle;imdb", merged!=null?merged.toString():"");
 		//Should fail the test
 		test1 = new Movie("2020", "MyTest", "-1", "IMDBIMPORTER");
 		test2 = new Movie("2020", "MyTest", "5", "whateverSource");
@@ -190,7 +190,12 @@ class MovieTests {
 		test1 = new Movie("2020", "MyTest", "-1", "IMDBIMPORTER");
 		test2 = new Movie("2020", "MyTest", "4", "whateverSource");
 		merged = test1.mergeSimilarMovie(test2);
-		assertEquals("2020\tMyTest\t-1\tIMDBIMPORTER;whateverSource", merged!=null?merged.toString():"");
+		test1 = new Movie("2020", "MyTest", "4", "anotherSource");
+		merged = merged.mergeSimilarMovie(test1);
+		assertEquals("2020\tMyTest\t-1\tIMDBIMPORTER;whateverSource;anotherSource", merged!=null?merged.toString():"");
+		test1 = new Movie("2020", "MyTest", "4", "anotherSource2");
+		merged = test1.mergeSimilarMovie(merged);
+		assertEquals("2020\tMyTest\t4\tanotherSource2;IMDBIMPORTER;whateverSource;anotherSource", merged!=null?merged.toString():"");
 	}
 	/*******************TESTS FOR UTILITIES CLASS********************/
 	/**
@@ -311,15 +316,33 @@ class MovieTests {
 		input.add("-0\tmyTitle\t0\tkaggle");
 		input.add("-10000\tAvengers\t180\tkaggle");
 		input.add("1911\tDen sorte dr�m\t53\timdb");
-		try {
-			validated = validator.process(input);
-			expected.add("-0\tmyTitle\t0\tkaggle");
-			expected.add("-10000\tAvengers\t180\tkaggle");
-			expected.add("1911\tDen sorte dr�m\t53\timdb");
-			assertEquals(expected, validated);
-		}
-		catch (Exception e) {
-			fail("Should not receive an Exception: "+e.getMessage());
-		}
+		validated = validator.process(input);
+		expected.add("-0\tmyTitle\t0\tkaggle");
+		expected.add("-10000\tAvengers\t180\tkaggle");
+		expected.add("1911\tDen sorte dr�m\t53\timdb");
+		assertEquals(expected, validated);
 	}
+ 	/*******************TESTS FOR DEDUPER*****************************/
+ 	/**
+ 	 * @author Juan-Carlos Sreng-Flores
+ 	 * 
+ 	 */
+ 	@Test
+ 	void testDeduperProcess() {
+ 		Deduper deduper = new Deduper(r2d2SourceDir, r2d2OutputDir);
+		ArrayList<String> input = new ArrayList<String>();
+		ArrayList<String> expected = new ArrayList<String>();
+		ArrayList<String> validated;
+		input.add("2008\tthe mummy: tomb of the dragon emperor\t112\tbestImporterEver...");
+		input.add("-10000\tAvegers\t180 \tkaggle");		
+		input.add("34\tmyTitle\t0\tkaggle");
+		input.add("-10000\tAvengers\t180\tkaggle");
+		input.add("1911\tDen sorte dr�m\t53\timdb");
+		input.add("34\tmyTitle\t0\tOTHERSOURCE");
+		input.add("2008\tthe mummy: tomb of the dragon emperor\t112\tkaggle;imdb");
+		input.add("1911\tDen sorte dr�m\t53\tkaggle");
+		validated = deduper.process(input);
+		System.out.println(validated);
+		assertEquals(true, validated.contains("2008\tthe mummy: tomb of the dragon emperor\t112\tbestImporterEver...;kaggle;imdb"));
+ 	}
 }

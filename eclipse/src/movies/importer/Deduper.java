@@ -44,7 +44,7 @@ public class Deduper extends Processor{
 			}
 			int index = noDup.indexOf(movie);
 			if (index==-1) {
-				noDup.add(new Movie(line));
+				noDup.add(movie);
 			}
 			else {
 				movie = movie.mergeSimilarMovie(noDup.get(index));
@@ -53,6 +53,34 @@ public class Deduper extends Processor{
 		}
 		ArrayList<String> noDupString = new ArrayList<String>();
 		for (Movie movie : noDup) {
+			noDupString.add(movie.toString());
+		}
+		return noDupString;
+	}
+	public ArrayList<String> process1(ArrayList<String> input) {
+		HashMap<Integer, Movie> noDupIntMovie = new HashMap<Integer, Movie>();
+		for (String line : input) {
+			//Using overloaded constructor to create a Movie type Object.
+			Movie newMovie;
+			Movie existingMovie;
+			try {
+				newMovie = new Movie(line);
+			}
+			catch(IllegalArgumentException i) {
+				continue;
+			}
+			existingMovie = noDupIntMovie.get(newMovie.hashCode());
+			if (existingMovie != null) {
+				existingMovie = existingMovie.mergeSimilarMovie(newMovie);
+				noDupIntMovie.replace(newMovie.hashCode(), existingMovie);
+			}
+			else {
+				noDupIntMovie.put(newMovie.hashCode(), newMovie);
+			}
+		}
+		ArrayList<Movie> noDupMovie = new ArrayList<Movie>(noDupIntMovie.values());
+		ArrayList<String> noDupString = new ArrayList<String>(noDupMovie.size());
+		for (Movie movie : noDupMovie) {
 			noDupString.add(movie.toString());
 		}
 		return noDupString;

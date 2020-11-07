@@ -16,10 +16,15 @@ public class Movie {
 	 * @param source String representing the source of the feed importer.
 	 */
 	public Movie(String releaseYear, String name, String runtime, String source) {
-		this.releaseYear = releaseYear;
-		this.name = name;
-		this.runtime = runtime;
-		this.source = source;
+		if (releaseYear != null && name != null && runtime != null && source != null) {
+			this.releaseYear = releaseYear;
+			this.name = name;
+			this.runtime = runtime;
+			this.source = source;
+		}
+		else {
+			throw new IllegalArgumentException("ARGUMENT CONTAINS NULL VALUE.");
+		}
 	}
 	/** 
 	 * @author Juan-Carlos Sreng-Flores
@@ -102,7 +107,20 @@ public class Movie {
 	public Movie mergeSimilarMovie(Movie duplicate) {
 		Movie merged = null;
 		if (this.equals(duplicate)) {
-			String mergedSource = this.source.equals(duplicate.source)?this.source:this.source+";"+duplicate.source;
+			String[] instanceSources = this.source.split(";");
+			String[] duplicateSources = duplicate.source.split(";");
+			String mergedSource = this.source;
+			
+			for(String duplicateSource: duplicateSources) {
+				boolean contains = false;
+				for(String instanceSource : instanceSources) {
+					contains = contains || instanceSource.equals(duplicateSource);	
+				}
+				if(!contains) {
+					mergedSource += ";"+duplicateSource;
+				}
+			}
+			
 			merged = new Movie(this.releaseYear, this.name, this.runtime, mergedSource);
 		}
 		return merged;
@@ -114,18 +132,18 @@ public class Movie {
 	 * objects.
 	 * Two movies are considered the same if they have exactly the same title and release year and the 
 	 * runtime between the two is no more than 5 minutes apart.
-	 * @param object Object the Object to be compared to the Movie instance Object.
-	 * @return boolean representing if the objects are equal or not.
+	 * @param object - Object the Object to be compared to the Movie instance Object.
+	 * @return boolean - representing if the objects are equal or not.
 	 */
 	@Override
 	public boolean equals(Object object) {
 		boolean isValid = false;
-		if(object instanceof Movie) {
+		if(object != null && object instanceof Movie) {
 			Movie movie = (Movie)object;
-			isValid = this.name.equals(movie.getName()) && this.releaseYear.equals(movie.getReleaseYear());
+			isValid = this.name.equals(movie.name) && this.releaseYear.equals(movie.releaseYear);
 			try {
 				int instanceRuntime  = Integer.parseInt(this.runtime);
-				int paramRuntime = Integer.parseInt(movie.getRuntime());
+				int paramRuntime = Integer.parseInt(movie.runtime);
 				if (instanceRuntime<paramRuntime)
 					isValid = isValid && ((paramRuntime-instanceRuntime)<=5);
 				else 
@@ -137,12 +155,27 @@ public class Movie {
 		}
 		return isValid;
 	}
+	/** 
+	 * @author Juan-Carlos Sreng-Flores
+	 * Override hashCode in order to use it for Deduper class.
+	 * Using prime numbers as multipliers for the hashFunction creates 
+	 * more randomness in the hashCode return number. 
+	 * @return int - hashCode of the object of type Movie.
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 89;
+		int hashCode = 7;
+		hashCode = prime * hashCode + ((name == null) ? 0 : name.hashCode());
+		hashCode = prime * hashCode + ((releaseYear == null) ? 0 : releaseYear.hashCode());
+		return hashCode;
+	}
 	/**
 	 * @author Nael Louis
 	 * @author Juan-Carlos Sreng-Flores 
 	 * This method overrides toString() method from Object class.
 	 * 
-	 * @return the String version of the Movie Object.
+	 * @return String - String version of the Movie Object.
 	 */
 	@Override
 	public String toString() {
