@@ -325,7 +325,10 @@ class MovieTests {
  	/*******************TESTS FOR DEDUPER*****************************/
  	/**
  	 * @author Juan-Carlos Sreng-Flores
- 	 * 
+ 	 * This test will use the HashSet<String> since the HashMap object will
+ 	 * not put give back the order given from the input ArrayList<String>
+ 	 * Therefore, since the hashCode is implemented, the HashSet<String> is used
+ 	 * in order to compare each other.
  	 */
  	@Test
  	void testDeduperProcess() {
