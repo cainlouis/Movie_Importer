@@ -21,43 +21,21 @@ public class Deduper extends Processor{
 	
 	/**
 	 * @author Juan-Carlos Sreng-Flores
-	 * @author Nael-Louis 
-	 * This process method iterates creates an ArrayList<Movie> in order to 
-	 * take benefit of the equals overridden method of the Movie class.
-	 * It converts all the String lines into a Movie object, and inserts it into the 
-	 * ArrayList<Movie>. ArryaList<Movie> is used to look for duplicates as we add more elements.
-	 * If it finds it, the movie Object is merged with the existing element, if not it is added at the end
-	 * of the list.
+	 * This method takes the input ArrayList<String> in order to look for duplicates
+	 * within it.
+	 * We use HashMap in order to speed up the process of finding its duplicate as we iterate 
+	 * through the input ArrayList<String> making an approximately O(1) for finding the duplicate.
+	 * The reason behind this is because with a hashFunction (coded in Movie.java), we can use it to
+	 * retrieve an Object associated with a key (Movie type Object) in a runtime of O(1) depending on
+	 * the load factor alpha. 
+	 * Also, when the Movie's duplicate is found, it is merged into one movie, and replaced from the old
+	 * value for the same key.
+	 * Once the input ArrayList<String>'s iteration is finished, we convert the set of Values of the
+	 * HashMap<Integer,Movie> into an ArrayList<String> making a final runtime of the method approx O(n).
 	 * @param input ArrayList<String> containing all the lines movie data.
 	 * @return ArrayList<String> returns the same list without duplicates.
 	 */
 	public ArrayList<String> process(ArrayList<String> input) {
-		ArrayList<Movie> noDup = new ArrayList<Movie>();
-		for (String line : input) {
-			//Using overloaded constructor to create a Movie type Object.
-			Movie movie;
-			try {
-				movie = new Movie(line);
-			}
-			catch(IllegalArgumentException i) {
-				continue;
-			}
-			int index = noDup.indexOf(movie);
-			if (index==-1) {
-				noDup.add(movie);
-			}
-			else {
-				movie = movie.mergeSimilarMovie(noDup.get(index));
-				noDup.add(index, movie);
-			}
-		}
-		ArrayList<String> noDupString = new ArrayList<String>();
-		for (Movie movie : noDup) {
-			noDupString.add(movie.toString());
-		}
-		return noDupString;
-	}
-	public ArrayList<String> process1(ArrayList<String> input) {
 		HashMap<Integer, Movie> noDupIntMovie = new HashMap<Integer, Movie>();
 		for (String line : input) {
 			//Using overloaded constructor to create a Movie type Object.

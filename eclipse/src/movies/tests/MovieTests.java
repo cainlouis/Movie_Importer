@@ -326,23 +326,35 @@ class MovieTests {
  	/**
  	 * @author Juan-Carlos Sreng-Flores
  	 * 
- 	 *
+ 	 */
  	@Test
  	void testDeduperProcess() {
  		Deduper deduper = new Deduper(r2d2SourceDir, r2d2OutputDir);
 		ArrayList<String> input = new ArrayList<String>();
-		ArrayList<String> expected = new ArrayList<String>();
-		ArrayList<String> validated;
+		HashSet<String> expected = new HashSet<String>();
+		HashSet<String> validated;
+		input.add("915\tNot Moana Again Please\t300\tkaggle;importer;imdb");
 		input.add("2008\tthe mummy: tomb of the dragon emperor\t112\tbestImporterEver...");
-		input.add("-10000\tAvegers\t180 \tkaggle");		
+		input.add("-10000\tAvengers\t180\tkaggle");		
+		input.add("-10000\tAvengers\t180\tkaggle");	
+		input.add("-10000\tAvengers\t180\tkaggle");	
+		input.add("-10000\tAvengers\t180\tkaggle");	
 		input.add("34\tmyTitle\t0\tkaggle");
 		input.add("-10000\tAvengers\t180\tkaggle");
 		input.add("1911\tDen sorte dr�m\t53\timdb");
 		input.add("34\tmyTitle\t0\tOTHERSOURCE");
 		input.add("2008\tthe mummy: tomb of the dragon emperor\t112\tkaggle;imdb");
 		input.add("1911\tDen sorte dr�m\t53\tkaggle");
-		validated = deduper.process(input);
-		System.out.println(validated);
-		assertEquals(true, validated.contains("2008\tthe mummy: tomb of the dragon emperor\t112\tbestImporterEver...;kaggle;imdb"));
- 	}*/
+		input.add("2007\tthe mummy: tomb of the dragon emperor\t112\tkaggle;imdb");
+		input.add("913\tNot Moana Again\t300\tkaggle;importer;imdb");
+		validated = new HashSet<String>(deduper.process(input));
+		expected.add("2008\tthe mummy: tomb of the dragon emperor\t112\tbestImporterEver...;kaggle;imdb");
+		expected.add("-10000\tAvengers\t180\tkaggle");
+		expected.add("1911\tDen sorte dr�m\t53\timdb;kaggle");
+		expected.add("34\tmyTitle\t0\tkaggle;OTHERSOURCE");
+		expected.add("2007\tthe mummy: tomb of the dragon emperor\t112\tkaggle;imdb");
+		expected.add("915\tNot Moana Again Please\t300\tkaggle;importer;imdb");
+		expected.add("913\tNot Moana Again\t300\tkaggle;importer;imdb");
+		assertEquals(expected, validated);
+ 	}
 }
