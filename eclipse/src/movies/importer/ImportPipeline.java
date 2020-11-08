@@ -2,12 +2,14 @@ package movies.importer;
 import java.io.*;
 	/**
 	 * @author Juan-Carlos Sreng-Flores
+	 * @author Nael Louis
 	 * This class is the main class where it finds the file to be imported into the 
 	 * be converted into a specific format.
 	 */
 public class ImportPipeline {
 	/**
 	 * @author Juan-Carlos Sreng-Flores
+	 * @author Nael Louis
 	 * Creates many importers for the pipeline, and executes them all by calling
 	 * the method processAll() which will execute all the importers in an orderly manner.
 	 */
