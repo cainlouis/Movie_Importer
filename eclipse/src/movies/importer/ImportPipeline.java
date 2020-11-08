@@ -12,8 +12,8 @@ public class ImportPipeline {
 	 * the method processAll() which will execute all the importers in an orderly manner.
 	 */
 	public static void main(String[] args) throws IOException{
-		String srcDirKaggleImporter= "..\\data\\KaggleSmallFile";
-		String srcDirImdbImporter = "..\\data\\ImdbSmallFile";
+		String srcDirKaggleImporter= "..\\data\\KaggleLargeFile";
+		String srcDirImdbImporter = "..\\data\\ImdbLargeFile";
 		String srcDirNormalizer = "..\\data\\Normalizer";
 		String srcDirValidator = "..\\data\\Validator";
 		String srcDirDeduper = "..\\data\\Deduper";
@@ -26,19 +26,28 @@ public class ImportPipeline {
 		processor[3] = new Validator(srcDirValidator, srcDirDeduper);
 		processor[4] = new Deduper(srcDirDeduper,outputDirFinal);
 		processAll(processor);
-		
 	}
 	/**
 	 * @author Juan-Carlos Sreng-Flores
 	 * @param importers - Processor[] where all the concrete classes that extends processor are put into it.
 	 * This method will execute all the Processor Objects in order to complete the pipeline.
+	 * The use of System.nanoTime is to calculate how much time it takes to execute the program.
 	 */
 	public static void processAll(Processor[] importers) throws IOException{
+		long startTime = System.nanoTime();
 		for(Processor importer : importers) {
-			printStep(importer);
 			importer.execute();
+			printStep(importer);
 		}
+		long endTime = System.nanoTime();
+		long duration = ((endTime - startTime)/1000000);  //divide by 1000000 to get milliseconds.
+		System.out.println("Finished in "+duration+" miliseconds");
 	}
+	/**
+	 * @author Juan-Carlos Sreng-Flores
+	 * Gives you step by step processing so we can keep track of the progress.
+	 * @param processor - Processor. We use it to know what kind of object it is.
+	*/
 	private static void printStep(Processor processor) {
 		if(processor instanceof KaggleImporter) {
 			System.out.println("KaggleImporter execute.");

@@ -48,7 +48,7 @@ public class Deduper extends Processor{
 				continue;
 			}
 			existingMovie = noDupIntMovie.get(newMovie.hashCode());
-			if (existingMovie != null) {
+			if (existingMovie != null && existingMovie.equals(newMovie)) {
 				existingMovie = existingMovie.mergeSimilarMovie(newMovie);
 				noDupIntMovie.replace(newMovie.hashCode(), existingMovie);
 			}

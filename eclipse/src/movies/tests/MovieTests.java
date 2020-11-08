@@ -350,6 +350,7 @@ class MovieTests {
 		input.add("1911\tDen sorte dr�m\t53\tkaggle");
 		input.add("2007\tthe mummy: tomb of the dragon emperor\t112\tkaggle;imdb");
 		input.add("913\tNot Moana Again\t300\tkaggle;importer;imdb");
+		input.add(null);
 		validated = new HashSet<String>(deduper.process(input));
 		expected.add("2008\tthe mummy: tomb of the dragon emperor\t112\tbestImporterEver...;kaggle;imdb");
 		expected.add("-10000\tAvengers\t180\tkaggle");
