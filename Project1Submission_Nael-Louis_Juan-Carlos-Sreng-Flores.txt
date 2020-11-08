@@ -2,5 +2,5 @@ Name: 	Nael Louis
 	Juan-Carlos Sreng-Flores
 
 GitLab repository URL: https://gitlab.com/Nael_Louis/movieimporter
-Note: HashSet was used to implement Deduper so that the runtime is O(n) however the order of the lines given into the pipelein is not the same as the output.
+Note: HashSet was used to implement Deduper so that the runtime is O(n) however the order of the lines given into the pipelein is not the same as the output. As a result, we recommend to use the bash sort command to sort the output file and compare with the evaluation file.
 
