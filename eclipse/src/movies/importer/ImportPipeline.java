@@ -30,7 +30,7 @@ public class ImportPipeline {
 		processor[4] = new Deduper(srcDirDeduper,outputDirFinal);
 		
 		//processAllLargeFiles(processor);  //Use this method to processLargeFiles, and to print the time it took to process.
-		processAll(processor);
+		processAllLargeFiles(processor);
 	}
 	/**
 	 * @author Juan-Carlos Sreng-Flores
