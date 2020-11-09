@@ -1,11 +1,13 @@
 package movies.tests;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
-
 import movies.utilities.Utilities;
 
+/** 
+ * @author Juan-Carlos Sreng-Flores
+ * JUnit test class to test the Utilities Class 
+ */
 class UtilitiesTests {
 	/**
 	 * @author Juan-Carlos Sreng-Flores
@@ -36,3 +38,4 @@ class UtilitiesTests {
 	}
 
 }
+

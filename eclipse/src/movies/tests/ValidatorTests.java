@@ -8,6 +8,10 @@ import org.junit.jupiter.api.Test;
 
 import movies.importer.Validator;
 
+/** 
+ * @author Juan-Carlos Sreng-Flores
+ * JUnit test class to test the Validator Class process method
+ */
 class ValidatorTests {
 	//srcDir and outputDir for KAGGLE movie importer and Normalizer class.
 	public static String c3P0SourceDir = "";
@@ -51,3 +55,4 @@ class ValidatorTests {
 	}
 
 }
+

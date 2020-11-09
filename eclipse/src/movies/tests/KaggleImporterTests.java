@@ -1,21 +1,19 @@
 package movies.tests;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.ArrayList;
-
 import org.junit.jupiter.api.Test;
-
 import movies.importer.KaggleImporter;
 
+/**
+ * @author Nael Louis
+ * JUnit test class to test KaggleImporter process method
+ */
 class KaggleImporterTests {
 	//srcDir and outputDir for KAGGLE movie importer and Normalizer class.
 	public static String c3P0SourceDir = "";
 	public static String c3P0OutputDir ="";
 	
-	//srcDir and outputDir for IMDB movie importer and Validator class;
-	public static String r2d2SourceDir = "";
-	public static String r2d2OutputDir = "";
 	/*******************TESTS FOR KAGGLE IMPORTER********************/
 	/**
 	 * @author Nael Louis
@@ -40,3 +38,4 @@ class KaggleImporterTests {
 	}
 	
 }
+

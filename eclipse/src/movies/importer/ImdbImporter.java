@@ -1,9 +1,10 @@
 package movies.importer;
 import java.util.*;
-	/**
-	 *  @author Juan-Carlos Sreng-Flores
-	 *  A class that extends Processor.java. It performs pipeline of file data.
-	 *  */
+	
+/**
+*  @author Juan-Carlos Sreng-Flores
+*  A class that extends Processor.java. It performs pipeline of file data.
+* */
 public class ImdbImporter extends Processor{
 	/**
 	 * Constructor method, calls super class to initialize attributes.

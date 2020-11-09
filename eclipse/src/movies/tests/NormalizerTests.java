@@ -1,13 +1,14 @@
 package movies.tests;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.ArrayList;
-
 import org.junit.jupiter.api.Test;
-
 import movies.importer.Normalizer;
 
+/**
+ * @author Nael Louis
+ * JUnit test class to test the Normalizer process method
+ */
 class NormalizerTests {
 	//srcDir and outputDir for KAGGLE movie importer and Normalizer class.
 	public static String c3P0SourceDir = "";
@@ -35,3 +36,4 @@ class NormalizerTests {
 		assertEquals(expected, processed);
 	}
 }
+

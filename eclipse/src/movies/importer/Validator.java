@@ -1,6 +1,7 @@
 package movies.importer;
 import java.util.*;
 import movies.utilities.*;
+
 /**
  * @author Juan-Carlos Sreng-Flores
  * The Validaor class extends the Processor class.
@@ -9,7 +10,6 @@ import movies.utilities.*;
  * whether they have the minimum requirements to be considered as movies or not.
  * It then creates a new file, containing the movies that are valid. 
  */
-
 public class Validator extends Processor{
 	/**
 	 * Constructor method, calls superClass for initialization and the file read does not 

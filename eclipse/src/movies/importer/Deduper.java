@@ -1,11 +1,12 @@
 package movies.importer;
 import java.util.*;
-	/**
-	 * @author Juan-Carlos Sreng-Flores
-	 * @author Nael-Louis
-	 * A concrete class extending the abstract class Processor.
-	 * It is implemented to remove any form of duplicates from a feed.
-	 */
+	
+/**
+* @author Juan-Carlos Sreng-Flores
+* @author Nael-Louis
+* A concrete class extending the abstract class Processor.
+* It is implemented to remove any form of duplicates from a feed.
+*/
 public class Deduper extends Processor{
 	/**
 	 * @author Juan-Carlos Sreng-Flores
