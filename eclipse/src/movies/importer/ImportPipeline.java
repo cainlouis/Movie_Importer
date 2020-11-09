@@ -30,19 +30,7 @@ public class ImportPipeline {
 		processor[4] = new Deduper(srcDirDeduper,outputDirFinal);
 		
 		//processAllLargeFiles(processor);  //Use this method to processLargeFiles, and to print the time it took to process.
-		processAllLargeFiles(processor);
-	}
-	/**
-	 * @author Juan-Carlos Sreng-Flores
-	 * @param importers - Processor[] where all the concrete classes that extends processor are put into it.
-	 * This method will execute all the Processor Objects in order to complete the pipeline.
-	 */
-	public static void processAll(Processor[] importers) throws IOException{
-		for(Processor importer : importers) {
-			importer.execute();
-			printStep(importer);
-		}
-		long endTime = System.nanoTime();
+		processAll(processor);
 	}
 	/**
 	 * @author Juan-Carlos Sreng-Flores
@@ -51,7 +39,7 @@ public class ImportPipeline {
 	 * The use of System.nanoTime is to calculate how much time it takes to execute the program.
 	 * It is recommended to use it in large files so it gives the step of the progress.
 	 */
-	private static void processAllLargeFiles(Processor[] importers) throws IOException{
+	private static void processAll(Processor[] importers) throws IOException{
 		long startTime = System.nanoTime();
 		for(Processor importer : importers) {
 			importer.execute();
