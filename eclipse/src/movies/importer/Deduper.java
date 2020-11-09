@@ -37,7 +37,7 @@ public class Deduper extends Processor{
 	 * @return ArrayList<String> returns the same list without duplicates.
 	 */
 	public ArrayList<String> process(ArrayList<String> input) {
-		HashMap<Integer, Movie> noDupIntMovie = new HashMap<Integer, Movie>();
+		HashMap<Movie, Movie> noDupIntMovie = new HashMap<Movie, Movie>();
 		for (String line : input) {
 			//Using overloaded constructor to create a Movie type Object.
 			Movie newMovie;
@@ -48,13 +48,13 @@ public class Deduper extends Processor{
 			catch(IllegalArgumentException i) {
 				continue;
 			}
-			existingMovie = noDupIntMovie.get(newMovie.hashCode());
+			existingMovie = noDupIntMovie.get(newMovie);
 			if (existingMovie != null && existingMovie.equals(newMovie)) {
 				existingMovie = existingMovie.mergeSimilarMovie(newMovie);
-				noDupIntMovie.replace(newMovie.hashCode(), existingMovie);
+				noDupIntMovie.replace(newMovie, existingMovie);
 			}
 			else {
-				noDupIntMovie.put(newMovie.hashCode(), newMovie);
+				noDupIntMovie.put(newMovie, newMovie);
 			}
 		}
 		ArrayList<Movie> noDupMovie = new ArrayList<Movie>(noDupIntMovie.values());
