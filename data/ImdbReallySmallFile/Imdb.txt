@@ -1,0 +1,3 @@
+header
+tt0002445	Quo Vadis?	Quo Vadis?	1913	3/1/1913	"Drama, History"	120	Italy	Italian	Enrico Guazzoni	"Henryk Sienkiewicz, Enrico Guazzoni"	Società Italiana Cines	"Amleto Novelli, Gustavo Serena, Carlo Cattaneo, Amelia Cattaneo, Lea Giunchi, Bruto Castellani, Augusto Mastripietri, Cesare Moltini, Olga Brandini, Ignazio Lupi, Giovanni Gizzi, Lia Orlandini, Matilde Guillaume, Ida Carloni Talli, Giuseppe Gambardella"	"An epic Italian film ""Quo Vadis"" influenced many of the later movies."	6.2	273	ITL 45000				7	5
+tt0000009	Miss Jerry	Miss Jerry	1894	1894-10-09	Romance	45	USA	None	Alexander Black	Alexander Black	Alexander Black Photoplays	"Blanche Bayliss, William Courtenay, Chauncey Depew"	The adventures of a female reporter in the 1890s.	5.9	154					1	2
